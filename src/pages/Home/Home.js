@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Playground } from "../../components/Playground";
 import { CellGroup } from "../../components/CellGroup";
-import {Box, IconButton, ButtonBase, SvgIcon} from '@mui/material';
-import Typography from '@mui/material/Typography'
+import {Box, IconButton, ButtonBase, SvgIcon, Slide, Typography, Snackbar, Alert} from '@mui/material';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useNavigate } from 'react-router-dom';
 import { Ad } from "../../components/Ad";
 import { ReactComponent as BankCard } from '../../icon/bankCard.svg';
+
+const TransitionUp = (props) => {
+    return <Slide {...props} direction="up" />;
+  }
+
 const HomePageCell = ({
     account,
     accountType,
@@ -115,6 +119,13 @@ const HomePageCell = ({
 }
 export function Home () {
     const navigate = useNavigate();
+    const [openSnackbar, setSnackbar] = useState(false);
+    useEffect(() => {
+        setSnackbar(true);
+        setTimeout(() => {
+            setSnackbar(false);
+        }, 3000);
+    }, [])
     const definedCellConfig = [
         {
             account: '存款',
@@ -160,6 +171,9 @@ export function Home () {
                 <HomePageCell />
             </CellGroup>
             <Ad />
+            <Snackbar open={openSnackbar} TransitionComponent={TransitionUp} >
+                <Alert severity="warning" sx={{ width: '100%' }}>风控账户设备绑定，请联系您的客户经理！</Alert>
+            </Snackbar>
         </>
     )
 }
