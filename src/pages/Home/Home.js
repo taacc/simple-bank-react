@@ -4,6 +4,7 @@ import { CellGroup } from "../../components/CellGroup";
 import {Box, IconButton, ButtonBase} from '@mui/material';
 import Typography from '@mui/material/Typography'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { useNavigate } from 'react-router-dom';
 import { Ad } from "../../components/Ad";
 const HomePageCell = ({
     account,
@@ -11,10 +12,11 @@ const HomePageCell = ({
     balance,
     bankCardNum,
     hibernateCardList = [],
+    onClick,
     link
 }) => {
     return (
-        <Box key={bankCardNum}>
+        <Box key={bankCardNum} onClick={onClick}>
             <Box sx={{
                 position: 'relative'
             }}>
@@ -77,7 +79,6 @@ const HomePageCell = ({
                 }}
                 >
                     卡片待激活 {hibernateCard.bankCardNum}
-
                     <IconButton sx={
                     {
                         position: 'absolute',
@@ -100,6 +101,7 @@ const HomePageCell = ({
     )
 }
 export function Home () {
+    const navigate = useNavigate();
     const definedCellConfig = [
         {
             account: '存款',
@@ -110,11 +112,7 @@ export function Home () {
             account: '借记卡账户',
             balance: 'CNY 52.96',
             bankCardNum: '******12312312',
-            hibernateCardList: [
-                {
-                    bankCardNum: '******12312312'
-                }
-            ],
+            onClick: () => navigate('/deposit'),
             link: true
         },
         {

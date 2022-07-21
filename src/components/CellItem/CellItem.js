@@ -20,8 +20,8 @@ export function CellItem({children, render, sx}) {
     })
     return (
         <Box sx={_sx}
-        onMouseDown={onRippleStart}
-        onMouseUp={onRippleStop}
+            onMouseDown={onRippleStart}
+            onMouseUp={onRippleStop}
         >
             {
                 render ? render() : children

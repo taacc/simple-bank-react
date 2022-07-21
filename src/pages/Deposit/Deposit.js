@@ -5,7 +5,66 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import SearchIcon from '@mui/icons-material/Search';
 import { CellGroup } from "../../components/CellGroup";
+import { CellItem } from "../../components/CellItem";
 import { MyBankCard } from "../../components/MyBankCard";
+
+const DepositCellWithCellIcon = ({
+    title,
+    date,
+    link,
+    icon,
+    balance
+}) => {
+    return (
+        <Box key={date} sx={{
+            display: 'flex'
+        }}>
+            {icon && <Box sx={{
+                display: 'flex',
+                alignItems: 'center'
+            }}>
+                {icon}
+            </Box>}
+            <Box sx={{
+                flex: '1',
+                position: 'relative'
+            }}>
+                <Typography variant="body2" color="initial" sx={{
+                }}>
+                    {title}
+                </Typography>
+                {date && <Typography variant="h6" color="initial" sx={{
+                    maxWidth: '200px',
+                    fontWeight: 'bold'
+                }}>
+                    {date}
+                </Typography>}
+                {balance && <Typography variant="h5" color="initial" sx={{
+                    maxWidth: '200px',
+                    fontWeight: 'bold'
+                }}>
+                    {balance}
+                </Typography>}
+                 <IconButton sx={
+                    {
+                        position: 'absolute',
+                        right: '0',
+                        top: '50%',
+                        p: 0,
+                        transform: 'translateY(-50%)'
+                    }
+                    }>
+                    {
+                        link ? 
+                        <KeyboardArrowRightIcon sx={{
+                            fontSize: '20px'
+                    }}/> : null
+                    }
+                </IconButton>
+            </Box>
+        </Box>
+    )
+}
 
 const DepositCell = ({
     date,
@@ -119,10 +178,45 @@ export function Deposit () {
         }}>
             <HeaderNavigation title="存款"/>
             <MyBankCard />
-            <Box>
+            <Box sx={{
+                mt: '20px',
+                mb: '10px'
+            }}>
+                <CellItem sx={{
+                    background: 'white',
+                    borderRadius: '10px'
+                }}>
+                    <DepositCellWithCellIcon {...{
+                        title: '当前可用余额',
+                        balance: 'CNY 245',
+                        link: true
+                    }}/>
+                </CellItem>
+            </Box>
+            <Box sx={{
+                mb: '10px'
+            }}>
+                <CellItem sx={{
+                    background: 'white',
+                    borderRadius: '10px'
+                }}>
+                    <DepositCellWithCellIcon {...{
+                        title: '电子对账单',
+                        date: '2022/07/10',
+                        icon: <ReceiptLongIcon sx={{
+                            fontSize: '50px',
+                            mr: '10px'
+                        }}/>,
+                        link: true
+                    }}/>
+                </CellItem>
+            </Box>
+            <Box sx={{
+                mt: '30px'
+            }}>
                 <Typography variant="caption" color="initial" sx={{
                     fontWeight: 'bold',
-                    color: 'gray'
+                    color: 'gray',
                 }}>
                     最近交易
                 </Typography>
