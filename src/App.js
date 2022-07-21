@@ -1,6 +1,8 @@
 import './App.css';
 import { Layout } from './pages/Layout';
 import { Home } from './pages/Home';
+import { Deposit } from './pages/Deposit';
+import { ProfileSetting } from './pages/ProfileSetting';
 import { Routes, Route } from 'react-router-dom';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
@@ -13,7 +15,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}></Route>
-          </Route>  
+          </Route>
+          <Route path="/deposit" element={<Deposit />}>
+          </Route>
+          <Route path="/profileSetting" element={<ProfileSetting />}>
+          </Route>
         </Routes>
     </ThemeProvider>
   );

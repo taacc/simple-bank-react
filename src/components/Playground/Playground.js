@@ -3,8 +3,13 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import { useNavigate } from "react-router-dom";
 
 export function Playground() {
+    const navigate = useNavigate();
+    const gotoProfilePage = () => {
+        navigate('/profileSetting');
+    }
     return (
         <Box sx={{
             p: '0 16px', 
@@ -17,7 +22,7 @@ export function Playground() {
             borderBottom: '5px rgb(180, 151, 93) solid'
         }}>
             <Box sx={{display: 'flex',alignItems: 'center'}}>
-                <Avatar>H</Avatar>
+                <Avatar onClick={gotoProfilePage}>H</Avatar>
                 <Box component="span" sx={{pl: '10px'}}>顾元凯</Box>
             </Box>
             <IconButton>

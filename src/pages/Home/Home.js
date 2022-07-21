@@ -4,27 +4,7 @@ import { CellGroup } from "../../components/CellGroup";
 import {Box, IconButton, ButtonBase} from '@mui/material';
 import Typography from '@mui/material/Typography'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-const Ad = () => {
-    return <Box
-        sx={{
-            background: 'white',
-            p: '12px 16px',
-            m: '200px 16px 16px',
-            borderRadius: '10px',
-            display: 'flex'
-        }}
-    >
-        <img src="https://images.unsplash.com/photo-1522770179533-24471fcdba45" width='100px'/>
-        <Box>
-            <Typography variant="h7" color="initial" component="div" sx={{fontWeight: 'bold', ml: '10px'}}>
-                App新功能
-            </Typography>
-            <Typography variant="caption" color="initial" sx={{ml: '10px'}}>
-                不止新意，还有心意
-            </Typography>
-        </Box>
-    </Box>
-}
+import { Ad } from "../../components/Ad";
 const HomePageCell = ({
     account,
     accountType,
@@ -34,7 +14,7 @@ const HomePageCell = ({
     link
 }) => {
     return (
-        <Box>
+        <Box key={bankCardNum}>
             <Box sx={{
                 position: 'relative'
             }}>
@@ -80,9 +60,10 @@ const HomePageCell = ({
             </Box>
             {
                 hibernateCardList && hibernateCardList.map((hibernateCard) => 
-                <ButtonBase 
+                <ButtonBase
+                    component="div"
                     onMouseDown={(e) => e.stopPropagation () }
-                     sx={{
+                    sx={{
                     border: '2px rgb(55,75,96) solid',
                     mt: '5px',
                     p: '10px 5px',
@@ -91,7 +72,8 @@ const HomePageCell = ({
                     fontSize: '12px',
                     color: 'rgb(55,75,96)',
                     position: 'relative',
-                    width: '100%'
+                    width: '100%',
+                    justifyContent: 'left'
                 }}
                 >
                     卡片待激活 {hibernateCard.bankCardNum}
@@ -161,7 +143,9 @@ export function Home () {
     return (
         <>
             <Playground />
-            <CellGroup configuration={definedCellConfig}>
+            <CellGroup configuration={definedCellConfig} sx={{
+                m: '16px'
+            }}>
                 <HomePageCell />
             </CellGroup>
             <Ad />

@@ -2,16 +2,22 @@ import React, {cloneElement} from "react";
 import Box from '@mui/material/Box';
 import { CellItem } from "../CellItem";
 import Divider from '@mui/material/Divider';
-export function CellGroup ({configuration = [], children}) {
-    console.log(children, 'children')
+export function CellGroup (props) {
+    const { configuration = [], children, sx } = props;
+    const styles = {
+        display: 'flex',
+        flexDirection: 'column',
+        borderRadius: '10px',
+        background: 'white',
+    };
+    const _sx = Object.assign({
+        ...styles,
+        ...sx
+    })
+    console.log(_sx, 'sx')
     return (
-        <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            m: '16px',
-            borderRadius: '10px',
-            background: 'white'
-        }}>
+        <Box
+        sx={_sx}>
             {
                 configuration && configuration.length && configuration.map((cellProps, index) => 
                     <>
