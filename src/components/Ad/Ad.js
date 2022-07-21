@@ -6,9 +6,10 @@ export function Ad () {
             sx={{
                 background: 'white',
                 p: '12px 16px',
-                m: '200px 16px 16px',
+                m: '0 16px 16px',
                 borderRadius: '10px',
-                display: 'flex'
+                display: 'flex',
+                boxShadow: 'rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;'
             }}
         >
             <img src="https://images.unsplash.com/photo-1522770179533-24471fcdba45" alt="d" width='100px'/>

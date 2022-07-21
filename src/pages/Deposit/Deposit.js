@@ -1,6 +1,6 @@
 import React from "react";
 import { HeaderNavigation } from "../../components/HeaderNavigation";
-import { Container, IconButton, Box, Typography, Paper, InputBase} from '@mui/material'
+import { Container, IconButton, Box, Typography, Paper, InputBase, SvgIcon} from '@mui/material'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import SearchIcon from '@mui/icons-material/Search';
@@ -11,6 +11,9 @@ import { Ad } from "../../components/Ad";
 import { QuickActionList } from "../../components/QuickActionList";
 import { TransferPage } from "../Layout/TransferPage/TransferPage";
 import { useTransferTradePage } from "../../hooks/useTransferTradePage";
+import { ReactComponent as FileIcon } from '../../icon/file.svg';
+import { ReactComponent as BookIcon } from '../../icon/book.svg';
+
 const DepositCellWithCellIcon = ({
     title,
     date,
@@ -24,7 +27,8 @@ const DepositCellWithCellIcon = ({
         }}>
             {icon && <Box sx={{
                 display: 'flex',
-                alignItems: 'center'
+                alignItems: 'center',
+                width: '42px'
             }}>
                 {icon}
             </Box>}
@@ -32,18 +36,20 @@ const DepositCellWithCellIcon = ({
                 flex: '1',
                 position: 'relative'
             }}>
-                <Typography variant="body2" color="initial">
+                <Typography variant="body2" color="#9A9B9B">
                     {title}
                 </Typography>
                 {date && <Typography variant="h6" color="initial" sx={{
                     maxWidth: '200px',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    lineHeight: '30px'
                 }}>
                     {date}
                 </Typography>}
                 {balance && <Typography variant="h5" color="initial" sx={{
                     maxWidth: '200px',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    lineHeight: '30px'
                 }}>
                     {balance}
                 </Typography>}
@@ -72,23 +78,34 @@ const DepositCell = ({
     date,
     comment,
     balance,
-    link
+    link,
+    ccyUnit
 }) => {
     return (
         <Box key={date}>
             <Box sx={{
                 position: 'relative'
             }}>
-                <Typography variant="caption" color="initial">
+                <Typography variant="caption" color="initial" sx={{
+                    fontWeight: 'bold',
+                    color: '#9A9B9B'
+                }}>
                     {date}
                 </Typography>
                 <Typography variant="h6" color="initial" sx={{
                     fontWeight: 'bold',
-                    color: 'green'
+                    color: balance > 0 ? "green" : "#333",
+                    lineHeight: '24px'
                 }}>
-                    {balance}
+                    {
+                        balance > 0 ? 
+                        `${ccyUnit} ${balance}` : 
+                        `- ${ccyUnit} ${String(balance).substring(1)}.00`
+                    }
                 </Typography>
-                <Typography variant="body2" color="initial">
+                <Typography variant="body2" color="initial" sx={{
+                    width: '290px'
+                }}>
                     {comment}
                 </Typography>
                 <IconButton sx={
@@ -117,25 +134,36 @@ export function Deposit () {
         {
             date: '2022/06/20',
             comment: '已得利息',
-            balance: 'CNY 52.96',
+            ccyUnit: 'CNY',
+            balance: 0.16,
             link: true
         },
         {
             date: '2022/05/19',
-            comment: '超级网银xxxxxx',
-            balance: 'CNY 52.96',
+            comment: '超级网银汇出交易 本人 中国民生银行股份有限公司上海天钥支行 XXXXXXXXXXXXX7996',
+            ccyUnit: 'CNY',
+            balance: -400.00,
             link: true
         },
         {
-            date: '2022/08/20',
+            date: '2022/03/29',
             comment: '已得利息',
-            balance: 'CNY 52.96',
+            ccyUnit: 'CNY',
+            balance: 0.23,
             link: true
         },
         {
-            date: '2022/07/20',
+            date: '2021/12/20',
             comment: '超级网银xxxxxx',
-            balance: 'CNY 2323',
+            ccyUnit: 'CNY',
+            balance: 0.48,
+            link: true
+        },
+        {
+            date: '2021/10/04',
+            comment: '超级网银汇入交易 贾丽莎 中国建设银行股份有限公司 双流棠湖支行 跨行转出',
+            ccyUnit: 'CNY',
+            balance: 0.48,
             link: true
         },
         {
@@ -148,8 +176,8 @@ export function Deposit () {
                     position: 'relative'
                 }}
             >
-                <ReceiptLongIcon sx={{
-                    fontSize: '50px'
+                <SvgIcon viewBox="0 0 1024 1024" component={BookIcon} sx={{
+                    fontSize: '32px',
                 }}/>
                 <Typography variant="h7" color="initial" sx={{ml: '10px', m:'auto 10px auto'}}>
                     查看所有交易
@@ -174,8 +202,9 @@ export function Deposit () {
     ]
     return <>
         <Container maxWidth="xs" sx={{
-            background: 'rgb(240,244,247)',
+            background: '#E3E7EB',
             height: '100vh',
+            p: 0,
             overflowX: 'hidden',
             overflowY: 'auto'
         }}>
@@ -183,15 +212,17 @@ export function Deposit () {
             <MyBankCard />
             <Box sx={{
                 mt: '20px',
-                mb: '30px'
+                mb: '30px',
+                p: '0 16px'
             }}>
                 <CellItem sx={{
                     background: 'white',
-                    borderRadius: '10px'
+                    borderRadius: '10px',
+                    boxShadow: 'rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;'
                 }}>
                     <DepositCellWithCellIcon {...{
                         title: '当前可用余额',
-                        balance: 'CNY 245',
+                        balance: 'CNY 52.96',
                         link: true
                     }}/>
                 </CellItem>
@@ -199,25 +230,28 @@ export function Deposit () {
             <QuickActionList setItemModalOpen={setItemModalOpen} />
             <Box sx={{
                 mt: '30px',
-                mb: '10px'
+                mb: '10px',
+                p: '0 16px'
             }}>
                 <CellItem sx={{
                     background: 'white',
-                    borderRadius: '10px'
+                    borderRadius: '10px',
+                    boxShadow: 'rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;'
                 }}>
                     <DepositCellWithCellIcon {...{
                         title: '电子对账单',
                         date: '2022/07/10',
-                        icon: <ReceiptLongIcon sx={{
-                            fontSize: '50px',
-                            mr: '10px'
+                        icon: <SvgIcon viewBox="0 0 1024 1024" component={FileIcon} sx={{
+                            fontSize: '32px',
+                            mr: '20px'
                         }}/>,
                         link: true
                     }}/>
                 </CellItem>
             </Box>
             <Box sx={{
-                mt: '30px'
+                mt: '30px',
+                p: '0 16px'
             }}>
                 <Typography variant="caption" color="initial" sx={{
                     fontWeight: 'bold',
@@ -227,7 +261,7 @@ export function Deposit () {
                 </Typography>
                 <Paper
                     component="form"
-                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', borderRadius: '30px', m:'10px 0', boxShadow: 'none' }}
+                    sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', borderRadius: '30px', m:'10px 0',  boxShadow: 'rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;', height: '42px'}}
                 >
                     <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
                         <SearchIcon />
@@ -244,7 +278,19 @@ export function Deposit () {
                         <DepositCell />
                 </CellGroup>
             </Box>
-            <Ad />
+            <Box sx={{
+                mt: '100px'
+            }}>
+                <Typography component="div" variant="caption" color="initial" sx={{
+                    fontWeight: 'bold',
+                    color: 'gray',
+                    pl: '16px',
+                    mb: '10px'
+                }}>
+                    更多福利
+                </Typography>
+                <Ad />
+            </Box>
             <TransferPage open={modalOpen} handleClose={() => setItemModalOpen(false)}/>
         </Container>
     </>

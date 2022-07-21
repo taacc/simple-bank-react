@@ -7,8 +7,9 @@ export function CellGroup (props) {
     const styles = {
         display: 'flex',
         flexDirection: 'column',
-        borderRadius: '10px',
+        borderRadius: '8px',
         background: 'white',
+        boxShadow: 'rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;'
     };
     const _sx = Object.assign({
         ...styles,

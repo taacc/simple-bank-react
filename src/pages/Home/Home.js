@@ -1,11 +1,12 @@
 import React from "react";
 import { Playground } from "../../components/Playground";
 import { CellGroup } from "../../components/CellGroup";
-import {Box, IconButton, ButtonBase} from '@mui/material';
+import {Box, IconButton, ButtonBase, SvgIcon} from '@mui/material';
 import Typography from '@mui/material/Typography'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { useNavigate } from 'react-router-dom';
 import { Ad } from "../../components/Ad";
+import { ReactComponent as BankCard } from '../../icon/bankCard.svg';
 const HomePageCell = ({
     account,
     accountType,
@@ -20,25 +21,32 @@ const HomePageCell = ({
             <Box sx={{
                 position: 'relative'
             }}>
-                <Typography variant="caption" color="initial">
+                <Typography variant="caption" color="#7F7F7F" sx={{
+                    fontSize: '14px',
+                    fontWeight: 'bold'
+                }}>
                     {account}
                     {
                         accountType ? <Box sx={{
                             display: 'inline-block',
-                            background: 'rgb(235,238,253)',
+                            background: '#EBEEFD',
                             borderRadius: '5px',
-                            color: 'rgb(65,67,145)',
+                            color: '#414391',
                             p: '2px 4px',
-                            transform: 'scale(0.7) translateY(-4px)',
+                            transform: 'scale(0.8) translateY(-3px)',
                             fontWeight: 'bold'
                         }}>{accountType}</Box> : 
-                        <Box component='span'>
+                        <Box component='span' sx={{
+                            ml: '3px',
+                            fontWeight: 'bold'
+                        }}>
                             {bankCardNum}
                         </Box>
                     }
                 </Typography>
                 <Typography variant="h6" color="initial" sx={{
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    lineHeight: '25px'
                 }}>
                     {balance}
                 </Typography>
@@ -66,18 +74,23 @@ const HomePageCell = ({
                     component="div"
                     onMouseDown={(e) => e.stopPropagation () }
                     sx={{
-                    border: '2px rgb(55,75,96) solid',
-                    mt: '5px',
+                    border: '2px #3B5463 solid',
+                    mt: '20px',
                     p: '10px 5px',
                     borderRadius: '10px',
                     fontWeight: 'bold',
                     fontSize: '12px',
-                    color: 'rgb(55,75,96)',
+                    color: '#3B5463',
                     position: 'relative',
                     width: '100%',
                     justifyContent: 'left'
                 }}
                 >
+                    <SvgIcon viewBox="0 0 1024 1024" component={BankCard} sx={{
+                        color: '#3B5463',
+                        fontSize: '23px',
+                        mr: '4px'
+                    }}/>
                     卡片待激活 {hibernateCard.bankCardNum}
                     <IconButton sx={
                     {
@@ -106,22 +119,22 @@ export function Home () {
         {
             account: '存款',
             accountType: '休眠账户',
-            balance: '52.96'
+            balance: 'RMB 52.96'
         },
         {
             account: '借记卡账户',
             balance: 'CNY 52.96',
-            bankCardNum: '******12312312',
+            bankCardNum: '●●●● 7641',
             onClick: () => navigate('/deposit'),
             link: true
         },
         {
             account: '现汇活期存款',
             balance: 'USD 0.00',
-            bankCardNum: '******12312312',
+            bankCardNum: '●●●● 0323',
             hibernateCardList: [
                 {
-                    bankCardNum: '******12312312'
+                    bankCardNum: '●●●● 0323'
                 }
             ],
             link: true
@@ -129,10 +142,10 @@ export function Home () {
         {
             account: '现汇活期存款',
             balance: 'EUR 0.00',
-            bankCardNum: '******0323',
+            bankCardNum: '●●●● 0330',
             hibernateCardList: [
                 {
-                    bankCardNum: '******0323'
+                    bankCardNum: '●●●● 0330'
                 }
             ],
             link: true

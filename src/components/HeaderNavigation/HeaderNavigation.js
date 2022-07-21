@@ -12,15 +12,16 @@ export function HeaderNavigation({title}) {
         <Box sx={{
             display: 'flex',
             alignItems: 'center',
-            p: '5px 0',
-            position: 'relative'
+            p: '5px 0 5px 8px',
+            position: 'relative',
+            background: '#F0F4F7'
         }}>
             <IconButton onClick={back}>
                 <ArrowBackIosNewIcon sx={{
                     fontSize: '20px'
                 }}/>
             </IconButton>
-            <Typography variant="h6" color="initial"
+            <Typography variant="h7" color="initial"
                 sx={{
                     position: 'absolute',
                     left: '50%',
