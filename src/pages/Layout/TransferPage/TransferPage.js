@@ -10,7 +10,7 @@ import Slide from '@mui/material/Slide';
 import Typography from '@mui/material/Typography'
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
