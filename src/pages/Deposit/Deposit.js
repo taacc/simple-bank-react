@@ -7,7 +7,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import { CellGroup } from "../../components/CellGroup";
 import { CellItem } from "../../components/CellItem";
 import { MyBankCard } from "../../components/MyBankCard";
-
+import { Ad } from "../../components/Ad"; 
+import { QuickActionList } from "../../components/QuickActionList";
+import { TransferPage } from "../Layout/TransferPage/TransferPage";
+import { useTransferTradePage } from "../../hooks/useTransferTradePage";
 const DepositCellWithCellIcon = ({
     title,
     date,
@@ -29,8 +32,7 @@ const DepositCellWithCellIcon = ({
                 flex: '1',
                 position: 'relative'
             }}>
-                <Typography variant="body2" color="initial" sx={{
-                }}>
+                <Typography variant="body2" color="initial">
                     {title}
                 </Typography>
                 {date && <Typography variant="h6" color="initial" sx={{
@@ -110,6 +112,7 @@ const DepositCell = ({
     )
 }
 export function Deposit () {
+    const [modalOpen, setItemModalOpen] = useTransferTradePage();
     const definedCellConfig = [
         {
             date: '2022/06/20',
@@ -180,7 +183,7 @@ export function Deposit () {
             <MyBankCard />
             <Box sx={{
                 mt: '20px',
-                mb: '10px'
+                mb: '30px'
             }}>
                 <CellItem sx={{
                     background: 'white',
@@ -193,7 +196,9 @@ export function Deposit () {
                     }}/>
                 </CellItem>
             </Box>
+            <QuickActionList setItemModalOpen={setItemModalOpen} />
             <Box sx={{
+                mt: '30px',
                 mb: '10px'
             }}>
                 <CellItem sx={{
@@ -239,6 +244,8 @@ export function Deposit () {
                         <DepositCell />
                 </CellGroup>
             </Box>
+            <Ad />
+            <TransferPage open={modalOpen} handleClose={() => setItemModalOpen(false)}/>
         </Container>
     </>
 }

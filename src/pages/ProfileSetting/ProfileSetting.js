@@ -5,7 +5,6 @@ import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import { CellItem } from "../../components/CellItem";
 import { CellGroup } from "../../components/CellGroup";
-import { fontSize } from "@mui/system";
 
 const ProfileSettingCell = ({
     title,

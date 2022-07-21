@@ -7,7 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 export function ButtomNavigation(props) {
   const [value, setValue] = React.useState('recents');
-
+  const { setItemModalOpen } = props;
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -15,16 +15,19 @@ export function ButtomNavigation(props) {
   return (
     <BottomNavigation {...props} value={value} onChange={handleChange}>
       <BottomNavigationAction
-        label="Favorites"
+        label="财富管理"
         value="favorites"
         icon={<FavoriteIcon />}
       />
       <BottomNavigationAction
-        label="Nearby"
+        label="转账"
         value="nearby"
-        icon={<LocationOnIcon />}
+        icon={<LocationOnIcon 
+        onClick={() => setItemModalOpen && setItemModalOpen(true)}
+        />}
       />
-      <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
+      <BottomNavigationAction label="更多" value="folder" icon={<FolderIcon />} />
+      <BottomNavigationAction label="帮助" value="folder" icon={<FolderIcon />} />
     </BottomNavigation>
   );
 }
