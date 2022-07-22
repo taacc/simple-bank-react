@@ -2,7 +2,6 @@ import React from "react";
 import { HeaderNavigation } from "../../components/HeaderNavigation";
 import { Container, IconButton, Box, Typography, Paper, InputBase, SvgIcon} from '@mui/material'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import SearchIcon from '@mui/icons-material/Search';
 import { CellGroup } from "../../components/CellGroup";
 import { CellItem } from "../../components/CellItem";

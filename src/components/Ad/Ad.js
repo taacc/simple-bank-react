@@ -1,6 +1,6 @@
 import React from "react";
 import {Box, Typography} from '@mui/material';
-
+import adbg from '../../assets/ad.jpg';
 export function Ad () {
     return <Box
             sx={{
@@ -12,7 +12,7 @@ export function Ad () {
                 boxShadow: 'rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;'
             }}
         >
-            <img src="https://images.unsplash.com/photo-1522770179533-24471fcdba45" alt="d" width='100px'/>
+            <img src={adbg} alt="d" width='100px'/>
             <Box>
                 <Typography variant="h7" color="initial" component="div" sx={{fontWeight: 'bold', ml: '10px'}}>
                     App新功能
