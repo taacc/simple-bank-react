@@ -1,6 +1,7 @@
 import React, { forwardRef, useState } from "react";
 import { Stack, Divider,Box, Dialog, Button, Slide, DialogTitle, TextField, InputAdornment, Typography} from '@mui/material';
 import background from '../../assets/login_background.jpg';
+import template from '../../assets/template.jpg';
 import citipng from '../../assets/citi.png';
 import { styled } from "@mui/material/styles";
 import { useNavigate } from 'react-router-dom';
@@ -152,5 +153,8 @@ export function Login () {
             }}>信用卡申请进度查询</Typography>
             <LoginDialog open={loginDialogActive} onClose={() => setloginDialogActive(false)}/>
         </Box>
+        <img src={template} style={{
+            width: '100%'
+        }}/>
     </>
 }

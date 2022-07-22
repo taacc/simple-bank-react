@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Chip, Typography } from '@mui/material'
-const BankCard = () => {
+const BankCard = ({cardNum}) => {
     return <Box sx={{
         display: 'inline-block',
         position: 'relative',
@@ -28,7 +28,7 @@ const BankCard = () => {
                 借记卡账户
             </Typography>
             <Typography variant="h7" color="white">
-                ●●●● 7641
+               {cardNum}
             </Typography>
         </Box>
     </ Box>
@@ -41,9 +41,9 @@ export function MyBankCard() {
         mt: '10px',
         pl: '16px',
     }}>
-        <BankCard />
-        <BankCard />
-        <BankCard />
+        <BankCard cardNum="•••• 7641"/>
+        <BankCard cardNum="•••• 0323"/>
+        <BankCard cardNum="•••• 0330"/>
     </Box>
     )
 }

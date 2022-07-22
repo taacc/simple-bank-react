@@ -26,16 +26,16 @@ const HomePageCell = ({
                 position: 'relative'
             }}>
                 <Typography variant="caption" color="#7F7F7F" sx={{
-                    fontSize: '14px',
+                    fontSize: '12px',
                     fontWeight: 'bold'
                 }}>
                     {account}
                     {
                         accountType ? <Box sx={{
                             display: 'inline-block',
-                            background: '#EBEEFD',
+                            background: '#f5e5e5',
                             borderRadius: '5px',
-                            color: '#414391',
+                            color: 'red',
                             p: '2px 4px',
                             transform: 'scale(0.8) translateY(-3px)',
                             fontWeight: 'bold'
@@ -50,7 +50,8 @@ const HomePageCell = ({
                 </Typography>
                 <Typography variant="h6" color="initial" sx={{
                     fontWeight: 'bold',
-                    lineHeight: '25px'
+                    lineHeight: '25px',
+                    fontSize: '17px'
                 }}>
                     {balance}
                 </Typography>
@@ -78,13 +79,13 @@ const HomePageCell = ({
                     component="div"
                     onMouseDown={(e) => e.stopPropagation () }
                     sx={{
-                    border: '2px #3B5463 solid',
-                    mt: '20px',
-                    p: '10px 5px',
+                    border: '1.5px #193b56 solid',
+                    mt: '16px',
+                    p: '8px 5px',
                     borderRadius: '10px',
                     fontWeight: 'bold',
                     fontSize: '12px',
-                    color: '#3B5463',
+                    color: '#193b56',
                     position: 'relative',
                     width: '100%',
                     justifyContent: 'left'
@@ -129,23 +130,23 @@ export function Home () {
     const definedCellConfig = [
         {
             account: '存款',
-            accountType: '休眠账户',
-            balance: 'RMB 52.96'
+            accountType: '风控账户',
+            balance: 'RMB 67995631.8'
         },
         {
             account: '借记卡账户',
-            balance: 'CNY 52.96',
-            bankCardNum: '●●●● 7641',
+            balance: 'CNY 67995631.8',
+            bankCardNum: '•••• 7641',
             onClick: () => navigate('/deposit'),
             link: true
         },
         {
             account: '现汇活期存款',
             balance: 'USD 0.00',
-            bankCardNum: '●●●● 0323',
+            bankCardNum: '•••• 0323',
             hibernateCardList: [
                 {
-                    bankCardNum: '●●●● 0323'
+                    bankCardNum: '•••• 0323'
                 }
             ],
             link: true
@@ -153,10 +154,10 @@ export function Home () {
         {
             account: '现汇活期存款',
             balance: 'EUR 0.00',
-            bankCardNum: '●●●● 0330',
+            bankCardNum: '•••• 0330',
             hibernateCardList: [
                 {
-                    bankCardNum: '●●●● 0330'
+                    bankCardNum: '•••• 0330'
                 }
             ],
             link: true
@@ -170,7 +171,9 @@ export function Home () {
             }}>
                 <HomePageCell />
             </CellGroup>
-            <Ad />
+            <Ad sx={{
+                mt: '180px'
+            }}/>
             <Snackbar open={openSnackbar} TransitionComponent={TransitionUp} >
                 <Alert severity="warning" sx={{ width: '100%' }}>风控账户设备绑定，请联系您的客户经理！</Alert>
             </Snackbar>

@@ -1,7 +1,7 @@
 import React from "react";
 import {Box, Typography} from '@mui/material';
 import adbg from '../../assets/ad.jpg';
-export function Ad () {
+export function Ad ({sx}) {
     return <Box
             sx={{
                 background: 'white',
@@ -9,7 +9,8 @@ export function Ad () {
                 m: '0 16px 16px',
                 borderRadius: '10px',
                 display: 'flex',
-                boxShadow: 'rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;'
+                boxShadow: 'rgba(0, 0, 0, 0.05) 0px 2px 2px 0px;',
+                ...sx
             }}
         >
             <img src={adbg} alt="d" width='100px'/>

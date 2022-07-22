@@ -1,6 +1,8 @@
 import React from "react";
-import { Box, Typography } from '@mui/material';
-import AdUnitsIcon from '@mui/icons-material/AdUnits';
+import { Box, Typography, SvgIcon } from '@mui/material';
+import {ReactComponent as TransferQuickIcon} from '../../icon/transferQuickIcon.svg';
+import {ReactComponent as BindCardIcon} from '../../icon/bindCard.svg';
+import {ReactComponent as TdIcon} from '../../icon/td.svg';
 const QuickFunctionItem = ({
     functionName,
     icon,
@@ -43,10 +45,18 @@ export function QuickActionList({
         whiteSpace: 'nowrap',
         pl: '16px'
     }}>
-        <QuickFunctionItem functionName="转账" icon={<AdUnitsIcon />} onClick={() => setItemModalOpen(true)}/>
-        <QuickFunctionItem functionName="一键绑卡" icon={<AdUnitsIcon />}/>
-        <QuickFunctionItem functionName="大额存单" icon={<AdUnitsIcon />}/>
-        <QuickFunctionItem functionName="转账" icon={<AdUnitsIcon />}/>
+        <QuickFunctionItem functionName="转账" icon={<SvgIcon viewBox="0 0 1024 1024" component={TransferQuickIcon} sx={{
+                    color: 'white',
+                    fontSize: '30px'
+                }}/>} onClick={() => setItemModalOpen(true)}/>
+        <QuickFunctionItem functionName="一键绑卡" icon={<SvgIcon viewBox="0 0 1024 1024" component={BindCardIcon} sx={{
+                    color: 'white',
+                    fontSize: '30px'
+                }}/>}/>
+        <QuickFunctionItem functionName="大额存单" icon={<SvgIcon viewBox="0 0 1024 1024" component={TdIcon} sx={{
+                    color: 'white',
+                    fontSize: '30px'
+                }}/>}/>
     </Box>
     )
 }

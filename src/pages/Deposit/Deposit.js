@@ -39,14 +39,15 @@ const DepositCellWithCellIcon = ({
                     {title}
                 </Typography>
                 {date && <Typography variant="h6" color="initial" sx={{
-                    maxWidth: '200px',
+                    maxWidth: '280px',
                     fontWeight: 'bold',
-                    lineHeight: '30px'
+                    lineHeight: '30px',
+                    fontSize: '17px'
                 }}>
                     {date}
                 </Typography>}
                 {balance && <Typography variant="h5" color="initial" sx={{
-                    maxWidth: '200px',
+                    maxWidth: '280px',
                     fontWeight: 'bold',
                     lineHeight: '30px'
                 }}>
@@ -93,17 +94,20 @@ const DepositCell = ({
                 </Typography>
                 <Typography variant="h6" color="initial" sx={{
                     fontWeight: 'bold',
-                    color: balance > 0 ? "green" : "#333",
-                    lineHeight: '24px'
+                    color: balance >= 0 || typeof balance === 'string' ? "green" : "#333",
+                    lineHeight: '24px',
+                    fontSize: '17px'
                 }}>
                     {
-                        balance > 0 ? 
+                        balance >= 0 || typeof balance === 'string' ? 
                         `${ccyUnit} ${balance}` : 
                         `- ${ccyUnit} ${String(balance).substring(1)}.00`
                     }
                 </Typography>
                 <Typography variant="body2" color="initial" sx={{
-                    width: '290px'
+                    width: '290px',
+                    fontSize: '13px',
+                    color: '#7F7F7F'
                 }}>
                     {comment}
                 </Typography>
@@ -131,6 +135,13 @@ export function Deposit () {
     const [modalOpen, setItemModalOpen] = useTransferTradePage();
     const definedCellConfig = [
         {
+            date: '2022/07/22',
+            comment: '柜面汇入 本人',
+            ccyUnit: 'CNY',
+            balance: '67,995,578.84',
+            link: true
+        },
+        {
             date: '2022/06/20',
             comment: '已得利息',
             ccyUnit: 'CNY',
@@ -139,13 +150,13 @@ export function Deposit () {
         },
         {
             date: '2022/05/19',
-            comment: '超级网银汇出交易 本人 中国民生银行股份有限公司上海天钥支行 XXXXXXXXXXXXX7996',
+            comment: '超级网银汇出交易 本人 中国民生银行股份有限公司上海天钥支行 XXXXXXXXXXXXXXX7996',
             ccyUnit: 'CNY',
-            balance: -400.00,
+            balance: -400,
             link: true
         },
         {
-            date: '2022/03/29',
+            date: '2022/03/19',
             comment: '已得利息',
             ccyUnit: 'CNY',
             balance: 0.23,
@@ -153,7 +164,7 @@ export function Deposit () {
         },
         {
             date: '2021/12/20',
-            comment: '超级网银xxxxxx',
+            comment: '已得利息',
             ccyUnit: 'CNY',
             balance: 0.48,
             link: true
@@ -162,7 +173,7 @@ export function Deposit () {
             date: '2021/10/04',
             comment: '超级网银汇入交易 贾丽莎 中国建设银行股份有限公司 双流棠湖支行 跨行转出',
             ccyUnit: 'CNY',
-            balance: 0.48,
+            balance: '200.00',
             link: true
         },
         {
@@ -221,7 +232,7 @@ export function Deposit () {
                 }}>
                     <DepositCellWithCellIcon {...{
                         title: '当前可用余额',
-                        balance: 'CNY 52.96',
+                        balance: 'CNY 67995631.8',
                         link: true
                     }}/>
                 </CellItem>

@@ -46,7 +46,9 @@ const TransferFailDialog = ({
                 m: '30px 0 0'
             }}/>
             <DialogTitle color="initial">错误</DialogTitle>
-            <DialogContent variant="h7" color="initial">对不起，我们无法处理您的请求，请稍后再试</DialogContent>
+            <DialogContent variant="h7" color="initial" sx={{
+                textAlign: 'center'
+            }}>风险控制922，对不起，我们无法处理您的请求，请联系您的客户经理！</DialogContent>
             <Button onClick={() => handleTransFerFailClose()} variant="text" sx={{
                 m: '10px 0 20px'
             }}>确定</Button>
@@ -115,7 +117,9 @@ export function TransferPage({ open, handleClose }) {
                     </IconButton>
                     <Typography variant="h7" color="white">手机号转账</Typography>
                 </Box>
-                <Box sx={{
+                <Box 
+                onClick= {() => setTransferFailDialog(true)}
+                sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
